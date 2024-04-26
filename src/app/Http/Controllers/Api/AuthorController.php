@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Entities\AuthorEntity;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AuthorStoreRequest;
 use App\Models\Author;
@@ -12,8 +13,8 @@ class AuthorController extends Controller
 
     public function store(AuthorStoreRequest $request): JsonResponse
     {
-        Author::create($request->all());
+        $authorModel = Author::create($request->all());
 
-        return response()->json(['message' => Author::create($request->all())->toArray()],200);
+        return response()->json(['message' => AuthorEntity::fromArray($authorModel->toArray())],200);
     }
 }
