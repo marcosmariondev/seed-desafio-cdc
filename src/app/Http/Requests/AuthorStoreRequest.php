@@ -23,7 +23,7 @@ class AuthorStoreRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:authors,email',
             'description' => 'required|max:400',
         ];
     }
